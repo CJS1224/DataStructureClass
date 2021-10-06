@@ -7,7 +7,7 @@ class Dictionary
     public :
         Dictionary()
         {
-            for (int i = 97; i <= 122; i++)
+            for (int i = 97 ; i <= 122 ; i++)
             {
                 alpha.insert(pair<char, int>(char(i), 0)) ;
             }
@@ -25,11 +25,11 @@ class Dictionary
             {
                 if(_alpha.second == 0) continue ;
                 cout << _alpha.first << " ";
-                for (int i = 0; i < _alpha.second; i++)
+                for (int i = 0 ; i < _alpha.second ; i++)
                 {
                     cout << "*" ;
                 }
-                cout << _alpha.second << endl;
+                cout << _alpha.second << endl ;
             }
             return 0 ;
         }
