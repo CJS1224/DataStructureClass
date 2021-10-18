@@ -17,21 +17,19 @@ class Dictionary
             map<char, int>::iterator iter ;
             iter = alpha.find(c) ;
             iter -> second++ ;
-            return 0 ;
         }
         print()
         {
             for (const auto& _alpha : alpha)
             {
                 if(_alpha.second == 0) continue ;
-                cout << _alpha.first << " ";
+                cout << _alpha.first << " " ;
                 for (int i = 0 ; i < _alpha.second ; i++)
                 {
                     cout << "*" ;
                 }
                 cout << _alpha.second << endl ;
             }
-            return 0 ;
         }
     private :
         map<char, int> alpha ;
