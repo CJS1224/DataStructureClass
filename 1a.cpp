@@ -2,15 +2,23 @@
 
 using namespace std ;
 
-int main()
+void swap(int *a, int *b)
 {
-    int FLAG ;
+    int t = *a ;
+    *a = *b ;
+    *b = t ;
+}
+
+int main(int argc, char const **argv)
+{
+    srand(time(NULL)) ;
     int n ;
-    int guess ;
-    bool bingo = false ;
-    int upperBound = 100 ;
-    int lowerBound = 1 ;
-    int count = 0 ;
+    string s ;
+    int lower = 1 ;
+    int upper = 100 ;
+    int small, big ;
+    int counts = 0 ;
+    int bingo = 0 ;
     while(1)
     {
         try
@@ -20,55 +28,57 @@ int main()
             {
                 cin.clear() ;
                 cin.ignore() ;
-                throw "the number should be between 1 ~ 100" ;
+                throw "The number should be between 1 ~ 100" ;
             }
         }
         catch(const char *s) { cout << s << endl ; }
         if(n >= 1 && n <= 100) break ;
     }
-    while(count < 4)
+    small = (rand() % 100) + 1 ;
+    big = (rand() % 100) + 1 ;
+    if(small > big) swap(&small, &big) ;
+    counts++ ;
+    while(counts <= 4)
     {
-        flag_FLAG :
-        cin >> guess ;
-        try
+        if(counts == 4) small = big = (rand() % (upper - lower + 1)) + lower ;
+        if(small == n && big == n)
         {
-            if(guess < lowerBound || guess > upperBound)
-            {
-                cin.clear() ;
-                cin.ignore() ;
-                throw "the number should be within the bounds" ;
-            }
+            bingo = 1 ;
+            cout << "Anwser is (" << n << ", " << n << endl ;
+            break ;
         }
-        catch(const char *s)
+        cout << "(" << small << ", " << big << ")" << endl ;
+        flag_s :
+        cin >> s ;
+        if(s == "below")
         {
-            cout << s << endl ;
-            goto flag_FLAG ;
+            upper = small ;
+            small = (rand() % (upper - lower + 1)) + lower ;
+            big = (rand() % (upper - lower + 1)) + lower ;
+            if(small > big) swap(&small, &big) ;
         }
-        if(guess > lowerBound && guess < upperBound)
+        else if(s == "within")
         {
-            count++ ;
-            if(guess == n)
-            {
-                cout << "BINGO" ;
-                bingo = true ;
-                break ;
-            }
-            else if(guess < n)
-            {
-                lowerBound = guess ;
-                if(count <= 3) cout << "the range is between (" << lowerBound << ", " << upperBound << ")" << endl ;
-            }
-            else
-            {
-                upperBound = guess ;
-                if(count <= 3) cout << "the range is between (" << lowerBound << ", " << upperBound << ")" << endl ;
-            }
+            lower = small ;
+            upper = big ;
+            small = (rand() % (upper - lower + 1)) + lower ;
+            big = (rand() % (upper - lower + 1)) + lower ;
+            if(small > big) swap(&small, &big) ;
         }
-        else cout << "the number should be within the bounds" << endl ;
+        else if(s == "above")
+        {
+            lower = big ;
+            small = (rand() % (upper - lower + 1)) + lower ;
+            big = (rand() % (upper - lower + 1)) + lower ;
+            if(small > big) swap(&small, &big) ;
+        }
+        else
+        {
+            cout << "Input below, within or above" << endl ;
+            goto flag_s ;
+        }
+        counts++ ;
     }
-    if(!bingo)
-    {
-        cout << "LOSS" << endl << "ANSWER : " << n ;
-    }
+    if(!bingo) cout << "Program lose" << endl ;
     return 0 ;
 }
