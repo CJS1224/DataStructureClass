@@ -44,7 +44,7 @@ int main(int argc, char const **argv)
         if(small == n && big == n)
         {
             bingo = 1 ;
-            cout << "Anwser is (" << n << ", " << n << endl ;
+            cout << "Anwser is (" << n << ", " << n << ")" << endl ;
             break ;
         }
         cout << "(" << small << ", " << big << ")" << endl ;
