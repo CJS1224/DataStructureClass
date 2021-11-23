@@ -26,18 +26,14 @@ class Stack
         {
             Node *node = new Node() ;
             node -> setData(d) ;
-            if(isEmpty())
-            {
-                setTop(node) ;
-                countsPP() ;
-            }
+            if(isEmpty()) setTop(node) ;
             else
             {
                 node -> setPrev(peek()) ;
                 peek() -> setNext(node) ;
                 setTop(node) ;
-                countsPP() ;
             }
+            countsPP() ;
             return 1 ;
         }
         int pop()
