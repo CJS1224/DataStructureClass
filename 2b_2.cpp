@@ -9,7 +9,7 @@ class Node
         inline char getData() const { return data ; }
         inline Node *getPrev() const { return prev ; }
         inline Node *getNext() const { return next ; }
-        inline char setData(char d) { data = d ; }
+        inline void setData(char d) { data = d ; }
         inline Node *setPrev(Node *n) { prev = n ; }
         inline Node *setNext(Node *n) { next = n ; }
     private :
@@ -21,7 +21,7 @@ class Node
 class Stack
 {
     public :
-        Stack() : top(NULL), counts(0) {}
+        inline Stack() : top(NULL), counts(0) {}
         int push(char d)
         {
             Node *node = new Node() ;
@@ -71,7 +71,7 @@ class Stack
         inline void countsSS() { counts-- ; }
 } ;
 
-char *encode(char *str)
+char *encode(char *str) // under construction
 {
     char *front = new char[1000] ;
     char *end = new char[1000] ;
