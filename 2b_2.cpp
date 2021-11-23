@@ -9,7 +9,7 @@ class Node
         inline char getData() const { return data ; }
         inline Node *getPrev() const { return prev ; }
         inline Node *getNext() const { return next ; }
-        inline void setData(char d) { data = d ; }
+        inline char setData(char d) { data = d ; }
         inline Node *setPrev(Node *n) { prev = n ; }
         inline Node *setNext(Node *n) { next = n ; }
     private :
@@ -71,7 +71,7 @@ class Stack
         inline void countsSS() { counts-- ; }
 } ;
 
-char *encode(char *str) // under construction
+char *encode(char *str) // Thanks to 小紅
 {
     char *front = new char[1000] ;
     char *end = new char[1000] ;
@@ -112,7 +112,14 @@ char *encode(char *str) // under construction
                     c = c * base ;
                     strcpy(target, a + 1) ;
                     target[strlen(target) - 1] = '\0' ;
+                    l = strlen(target) ;
+                    while(strncmp(target, t, l) == 0)
+                    {
+                        c++ ;
+                        t += l ;
+                    }
                 }
+                else strcpy(target, buf) ;
                 strcpy(end, t) ;
                 strcpy(end, encode(end)) ;
                 sprintf(ans, "%s%d[%s]%s", front, c, target, end) ;
@@ -169,12 +176,26 @@ string decode(string str) // using stack
 
 int main(int argc, char const **argv)
 {
+    cout << "Input \"exit\" to end this program" << endl ;
+    cout << "Input \"encode\" to encode a string " << endl ;
+    cout << "Input \"decode\" to decode a string " << endl ;
+    string cmd ;
     string str ;
-    while(cin >> str)
+    while(1)
     {
-        cout << decode(str) << endl ;
-        char *s = &str[0] ;
-        cout << encode(s) << endl ;
+        cin >> cmd ;
+        if(cmd.compare("exit") == 0) break ;
+        else if(cmd.compare("encode") == 0)
+        {
+            cin >> str ;
+            char *c = &str[0] ;
+            cout << encode(c) << endl ;
+        }
+        else if(cmd.compare("decode") == 0)
+        {
+            cin >> str ;
+            cout << decode(str) << endl ;
+        }
     }
     return 0 ;
 }
