@@ -9,9 +9,9 @@ class Node
         inline char getData() const { return data ; }
         inline Node *getPrev() const { return prev ; }
         inline Node *getNext() const { return next ; }
-        inline char setData(char d) { data = d ; }
-        inline Node *setPrev(Node *n) { prev = n ; }
-        inline Node *setNext(Node *n) { next = n ; }
+        inline void setData(char d) { data = d ; }
+        inline void *setPrev(Node *n) { prev = n ; }
+        inline void *setNext(Node *n) { next = n ; }
     private :
         char data ;
         Node *prev ;
