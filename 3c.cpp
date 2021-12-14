@@ -58,8 +58,8 @@ class Queue // triple-ended queue
                 getRear() -> setNext(node) ;
                 setRear(node) ;
                 adjust() ;
+                countsPP() ;
             }
-            countsPP() ;
             return 1 ;
         }
         int addMiddle(T data)
