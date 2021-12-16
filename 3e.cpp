@@ -2,67 +2,67 @@
 
 using namespace std;
 
-template <class T>
+template <class WHAT_THE_HELL>
 class Node {
 public:
-  Node(T data, Node *left, Node *right) {
+  Node(WHAT_THE_HELL data, Node *left, Node *right) {
     this -> data = data;
     this -> left = left;
     this -> right = right;
   }
-  T data;
+  WHAT_THE_HELL data;
 	int level;
 	Node *left, *right;
   Node *prev = NULL;
   Node *next = NULL;
 };
 
-template <class T>
+template <class I_AM_TIRED>
 class Linked_List {
   public:
-    Linked_List(Node<T> *node) {
+    Linked_List(Node<I_AM_TIRED> *node) {
       head = node;
       tail = node;
     }
-    void add(Node<T> *node) {
+    void add(Node<I_AM_TIRED> *node) {
       tail -> next = node;
       node -> prev = tail;
       tail = node;
     }
-    Node<T> *getHead() {
+    Node<I_AM_TIRED> *getHead() {
       return head;
     }
     void literal() {
-      Node<T> *current = head;
+      Node<I_AM_TIRED> *current = head;
       while(current) {
-        cout << head -> data << " ";
+        cout << current -> data << " ";
         current = current -> next;
       }
     }
 
   private:
-    Node<T> *head;
-    Node<T> *tail;
+    Node<I_AM_TIRED> *head;
+    Node<I_AM_TIRED> *tail;
 };
 
-template <class T>
+template <class I_WANT_TO_SLEEP>
 class Base_List {
   public:
     Base_List() {
       next = NULL;
       data = NULL;
     }
-    Base_List(Node<T> *node) {
+    Base_List(Node<I_WANT_TO_SLEEP> *node) {
       next = NULL;
-      data = new Linked_List<T>(node);
+      data = new Linked_List<I_WANT_TO_SLEEP>(node);
     }
 
-    void add(Base_List<T> *current, Node<T> *node) {
-      Base_List<T> *exist = find(current, node -> data);
+    void add(Base_List<I_WANT_TO_SLEEP> *current, Node<I_WANT_TO_SLEEP> *node) {
+      Base_List<I_WANT_TO_SLEEP> *exist = find(current, node -> data);
       if(exist) {
         exist -> getData() -> add(node);
       }else {
-        Base_List<T> *Blist = new Base_List<T>(node);
+        Base_List<I_WANT_TO_SLEEP> *Blist = new Base_List<I_WANT_TO_SLEEP>(node);
         while(current -> getNext()) {
           current = current -> getNext();
         }
@@ -70,7 +70,7 @@ class Base_List {
       }
     }
 
-    Base_List<T> *find(Base_List<T> *current, T data) {
+    Base_List<I_WANT_TO_SLEEP> *find(Base_List<I_WANT_TO_SLEEP> *current, I_WANT_TO_SLEEP data) {
       current = current -> getNext();
       while(current) {
         if(current -> getData() -> getHead() -> data == data) {
@@ -81,7 +81,7 @@ class Base_List {
       return NULL;
     }
 
-    void literal(Base_List<T> *current) {
+    void literal(Base_List<I_WANT_TO_SLEEP> *current) {
       current = current -> getNext();
       while (current) {
         current -> getData() -> literal();
@@ -89,49 +89,51 @@ class Base_List {
         cout << endl;
       }
     }
-    Base_List<T> *getNext() {
+    Base_List<I_WANT_TO_SLEEP> *getNext() {
       return next;
     }
-    void setNext(Base_List<T> *next) {
+    void setNext(Base_List<I_WANT_TO_SLEEP> *next) {
       this -> next = next;
     }
 
-    Linked_List<T> *getData() {
+    Linked_List<I_WANT_TO_SLEEP> *getData() {
       return data;
     }
 
   private:
-    Base_List<T> *next;
-    Linked_List<T> *data;
+    Base_List<I_WANT_TO_SLEEP> *next;
+    Linked_List<I_WANT_TO_SLEEP> *data;
 };
 
 
-template <class T>
+template <class ZZzzz>
 class Tree {
 public:
-  Tree() {}
+  Tree() {
+    root = NULL;
+  }
 	Tree(int amount) {
 		root = NULL;
     //cout<<typeid(ZZzzz).name();
 	}
-	void insert(T data) {
-    Node<T> *node = new Node<T>(data, NULL, NULL);
+	void insert(ZZzzz data) {
+    Node<ZZzzz> *node = new Node<ZZzzz>(data, NULL, NULL);
 		insert(&root, node, 0);
 	}
   // ======
-	void levelorder(Base_List<T> *list = NULL) {
+	void levelorder(Base_List<ZZzzz> *list = NULL) {
     if (root == NULL) {
       return;
     }
     // Create an empty queue for level order traversal
-    queue<Node<T> *> q;
+    queue<Node<ZZzzz> *> q;
 
     // Enqueue Root and initialize height
     q.push(root);
 
     while (q.empty() == false) {
       // Print front of queue and remove it from queue
-      Node<T> *node = q.front();
+      Node<ZZzzz> *node = q.front();
       if(list) {
         list -> add(list, node);
       }
@@ -152,8 +154,8 @@ public:
     }
 	}
 private:
-	Node<T> *root;
-	void insert(Node<T> **r, Node<T> *n, int lev) {
+	Node<ZZzzz> *root;
+	void insert(Node<ZZzzz> **r, Node<ZZzzz> *n, int lev) {
 		if(*r == NULL) {
       n -> level = lev;
       *r = n;
